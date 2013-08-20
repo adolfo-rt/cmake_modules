@@ -23,11 +23,17 @@ When contributing a new CMake module for this package, please follow these guide
 - The module should be placed in the `cmake/Modules` directory of this package
 - It should take the name `Find<PackageName>.cmake`
  - For example `FindTinyXML.cmake`
-- The module should **at least** provide these variables:
+- The module should **at least** provide the `<PackageName>_FOUND` variable, and when applicable, any of the following variables:
+ - `<PackageName>_INCLUDE_DIRS`
+ - `<PackageName>_LIBRARIES`
+ - `<PackageName>_EXECUTABLE`
+ - `<PackageName>_DEFINITIONS`
+
+- The most common usecase for writing a module script is that of **finding libraries**, case in which the output variables are:
  - `<PackageName>_FOUND`
  - `<PackageName>_INCLUDE_DIRS`
  - `<PackageName>_LIBRARIES`
- - It may provide other variables but they must be documented at the top of the module file.
+
 - The module must provide documentation for each variable it sets and give an example of usage
 
 You should also strive to keep the `PackageName` in `Find<PackageName>.cmake`'s case consistent in the CMake variables. For example, `FindTinyXML.cmake` should be found with a command like `find_package(TinyXML REQUIRED)` and should produce variables like `TinyXML_FOUND`.
